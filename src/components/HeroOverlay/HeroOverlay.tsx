@@ -62,32 +62,32 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
   };
 
   return (
-    <div className="absolute inset-0 z-20 flex flex-col justify-between px-6 sm:px-12 md:px-20 pt-28 pb-12 pointer-events-none">
+    <div className="absolute inset-0 z-20 flex flex-col justify-between px-4 sm:px-8 md:px-12 lg:px-20 pt-20 sm:pt-28 pb-8 sm:pb-12 pointer-events-none">
       {/* Top Bar Status */}
       <div className="flex items-center justify-between w-full pointer-events-auto">
-        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-dark-900/80 border border-white/10 backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
+        <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-dark-900/80 border border-white/10 backdrop-blur-md max-w-full">
+          <span className="relative flex h-2 w-2 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan" />
           </span>
-          <span className="text-xs font-mono text-slate-300 font-medium tracking-wide">
+          <span className="text-[11px] sm:text-xs font-mono text-slate-300 font-medium tracking-wide truncate">
             Available for Senior Backend & Engineering Roles
           </span>
         </div>
       </div>
 
       {/* Main Hero Content Area - Left Aligned to balance with 55-60% portrait */}
-      <div className="max-w-2xl w-full my-auto pointer-events-auto space-y-6">
+      <div className="max-w-2xl w-full my-auto pointer-events-auto space-y-4 sm:space-y-6">
         {/* PERMANENT ANCHORED TITLE: ALWAYS VISIBLE */}
         <div className="space-y-1">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold text-white tracking-tight leading-[1.05]">
+          <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight leading-[1.05]">
             Hi,<br />
             I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-accent-cyan">Bhavya Pant.</span>
           </h1>
         </div>
 
         {/* DYNAMIC EVOLVING SUBTITLE */}
-        <div className="min-h-[220px] flex flex-col justify-start">
+        <div className="min-h-[170px] sm:min-h-[220px] flex flex-col justify-start">
           <AnimatePresence mode="wait">
             {/* Stage 0: Initial Load (0% - 20%) */}
             {stage === 0 && (
@@ -97,22 +97,22 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="space-y-6"
+                className="space-y-4 sm:space-y-6"
               >
-                <div className="space-y-2">
-                  <p className="text-xl sm:text-2xl text-accent-cyan font-mono font-semibold">
+                <div className="space-y-1.5 sm:space-y-2">
+                  <p className="text-lg sm:text-2xl text-accent-cyan font-mono font-semibold">
                     Software Engineer
                   </p>
-                  <p className="text-lg sm:text-xl text-slate-300 font-light leading-relaxed max-w-xl">
+                  <p className="text-base sm:text-xl text-slate-300 font-light leading-relaxed max-w-xl">
                     Building scalable backend systems, AI-powered products & distributed infrastructure.
                   </p>
                 </div>
 
                 {/* 3 CTA Buttons visible immediately on load */}
-                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-1 sm:pt-2">
                   <button
                     onClick={scrollToProjects}
-                    className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-slate-950 font-bold text-xs font-mono shadow-lg shadow-accent-cyan/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    className="group inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-slate-950 font-bold text-xs font-mono shadow-lg shadow-accent-cyan/20 hover:scale-[1.02] active:scale-[0.98] transition-all w-full xs:w-auto"
                   >
                     <span>View Projects</span>
                     <ArrowDown className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" />
@@ -120,7 +120,7 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
 
                   <button
                     onClick={onDownloadResume}
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02] w-full xs:w-auto"
                   >
                     <FileText className="w-3.5 h-3.5 text-accent-cyan" />
                     <span>Download Resume</span>
@@ -128,7 +128,7 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
 
                   <button
                     onClick={onOpenContact}
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02] w-full xs:w-auto"
                   >
                     <Send className="w-3.5 h-3.5 text-accent-indigo" />
                     <span>Let's Connect</span>
@@ -150,11 +150,11 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
                 <p className="text-xl sm:text-3xl text-slate-200 font-bold tracking-tight">
                   Building scalable backend systems.
                 </p>
-                <div className="flex flex-wrap gap-2.5 pt-1">
+                <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
                   {['Java', 'Spring Boot', 'Kafka'].map((tech) => (
                     <span
                       key={tech}
-                      className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-accent-cyan font-mono text-sm font-semibold backdrop-blur-md"
+                      className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-accent-cyan font-mono text-xs sm:text-sm font-semibold backdrop-blur-md"
                     >
                       {tech}
                     </span>
@@ -177,14 +177,14 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
                   Production Systems
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
-                  <div className="p-4 rounded-xl bg-dark-900/90 border border-white/10 space-y-1">
-                    <div className="text-3xl font-mono font-bold text-accent-cyan">
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-dark-900/90 border border-white/10 space-y-1">
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-accent-cyan">
                       {deviceCounter.toLocaleString()}+
                     </div>
                     <div className="text-xs font-mono text-slate-400">Connected IoT Devices</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-dark-900/90 border border-white/10 space-y-1">
-                    <div className="text-3xl font-mono font-bold text-accent-indigo">
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-dark-900/90 border border-white/10 space-y-1">
+                    <div className="text-2xl sm:text-3xl font-mono font-bold text-accent-indigo">
                       {reqCounter}K+
                     </div>
                     <div className="text-xs font-mono text-slate-400">API Requests / Day</div>
@@ -206,11 +206,11 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
                 <p className="text-xl sm:text-3xl text-slate-200 font-bold tracking-tight">
                   Building AI & Distributed Systems.
                 </p>
-                <div className="flex flex-wrap gap-2.5 pt-1">
+                <div className="flex flex-wrap gap-2 sm:gap-2.5 pt-1">
                   {['Kafka', 'Docker', 'AWS', 'Kubernetes'].map((tech) => (
                     <span
                       key={tech}
-                      className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-purple-300 font-mono text-sm font-semibold backdrop-blur-md"
+                      className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-white/5 border border-white/10 text-purple-300 font-mono text-xs sm:text-sm font-semibold backdrop-blur-md"
                     >
                       {tech}
                     </span>
@@ -227,17 +227,17 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="space-y-6"
+                className="space-y-4 sm:space-y-6"
               >
-                <p className="text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-indigo tracking-tight">
+                <p className="text-xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-indigo tracking-tight">
                   Let's build something extraordinary.
                 </p>
 
                 {/* 3 CTA Buttons */}
-                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5 pt-1 sm:pt-2">
                   <button
                     onClick={scrollToProjects}
-                    className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-slate-950 font-bold text-xs font-mono shadow-lg shadow-accent-cyan/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    className="group inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-slate-950 font-bold text-xs font-mono shadow-lg shadow-accent-cyan/20 hover:scale-[1.02] active:scale-[0.98] transition-all w-full xs:w-auto"
                   >
                     <span>View Projects</span>
                     <ArrowDown className="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" />
@@ -245,7 +245,7 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
 
                   <button
                     onClick={onDownloadResume}
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02] w-full xs:w-auto"
                   >
                     <FileText className="w-3.5 h-3.5 text-accent-cyan" />
                     <span>Download Resume</span>
@@ -253,7 +253,7 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
 
                   <button
                     onClick={onOpenContact}
-                    className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-200 text-xs font-mono backdrop-blur-md transition-all hover:scale-[1.02] w-full xs:w-auto"
                   >
                     <Send className="w-3.5 h-3.5 text-accent-indigo" />
                     <span>Let's Connect</span>
@@ -266,10 +266,10 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({
       </div>
 
       {/* Bottom Scroll Prompt Bar */}
-      <div className="flex items-center justify-between w-full text-xs font-mono text-slate-500 pt-6 border-t border-white/5 pointer-events-auto">
+      <div className="flex items-center justify-between w-full text-xs font-mono text-slate-500 pt-4 sm:pt-6 border-t border-white/5 pointer-events-auto">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping" />
-          <span>SCROLL TO EXPLORE ARCHITECTURE</span>
+          <span className="w-2 h-2 rounded-full bg-accent-cyan animate-ping shrink-0" />
+          <span className="text-[10px] sm:text-xs">SCROLL TO EXPLORE ARCHITECTURE</span>
         </div>
         <div className="hidden sm:flex items-center gap-4 text-slate-400">
           <span>Java</span>

@@ -124,7 +124,7 @@ export const ScrollStory: React.FC = () => {
     <section 
       ref={containerRef} 
       id="scroll-story" 
-      className="relative py-24 px-6 sm:px-12 md:px-20 bg-dark-900 border-t border-white/5"
+      className="relative py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-dark-900 border-t border-white/5"
     >
       {/* Background Lighting */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[140px] pointer-events-none" />
@@ -132,20 +132,20 @@ export const ScrollStory: React.FC = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-20 text-center md:text-left space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-accent-cyan">
+        <div className="mb-12 sm:mb-20 text-center md:text-left space-y-3 sm:space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-mono text-accent-cyan">
             <span>CAREER & ARCHITECTURAL JOURNEY</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
             How I Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-indigo">Scalable Systems</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl">
+          <p className="text-slate-400 text-base sm:text-lg max-w-2xl">
             A scrollytelling walkthrough of core engineering domains, high-throughput pipelines, AI integrations, and cloud orchestration.
           </p>
         </div>
 
         {/* Chapters Stack */}
-        <div className="space-y-16">
+        <div className="space-y-10 sm:space-y-16">
           {chapters.map((chapter, idx) => {
             const Icon = chapter.icon;
             return (
@@ -155,40 +155,40 @@ export const ScrollStory: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.7, delay: idx * 0.1 }}
-                className="group relative rounded-3xl p-8 sm:p-12 glass-card hover:border-white/20 transition-all duration-500 overflow-hidden"
+                className="group relative rounded-3xl p-5 sm:p-8 lg:p-12 glass-card hover:border-white/20 transition-all duration-500 overflow-hidden"
               >
                 {/* Accent Backdrop Gradient */}
                 <div className={`absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl ${chapter.accentColor} rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none`} />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
                   {/* Left Column: Number, Title & Text */}
-                  <div className="lg:col-span-7 space-y-6">
-                    <div className="flex items-center gap-4">
-                      <span className="text-4xl font-mono font-extrabold text-white/30">
+                  <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <span className="text-3xl sm:text-4xl font-mono font-extrabold text-white/30">
                         {chapter.number}
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
+                      <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-mono text-slate-300">
                         {chapter.category}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <div className={`p-3 rounded-2xl bg-white/5 border ${chapter.accentColor}`}>
-                        <Icon className="w-7 h-7" />
+                      <div className={`p-2.5 sm:p-3 rounded-2xl bg-white/5 border ${chapter.accentColor}`}>
+                        <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
                       </div>
-                      <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
                         {chapter.title}
                       </h3>
                     </div>
 
-                    <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+                    <p className="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed font-light">
                       {chapter.description}
                     </p>
 
                     {/* Bullet Highlights */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1 sm:pt-2">
                       {chapter.highlights.map((item, hIdx) => (
-                        <div key={hIdx} className="flex items-center gap-2.5 text-sm text-slate-300">
+                        <div key={hIdx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-300">
                           <CheckCircle2 className="w-4 h-4 text-accent-cyan shrink-0" />
                           <span>{item}</span>
                         </div>
@@ -199,35 +199,35 @@ export const ScrollStory: React.FC = () => {
                   {/* Right Column: Code Snippet or Metrics Visual */}
                   <div className="lg:col-span-5">
                     {chapter.metrics ? (
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-1 gap-3 sm:gap-4">
                         {chapter.metrics.map((m, mIdx) => (
                           <div 
                             key={mIdx} 
-                            className="p-5 rounded-2xl bg-dark-950/80 border border-white/10 backdrop-blur-md flex items-center justify-between group-hover:border-accent-cyan/30 transition-colors"
+                            className="p-4 sm:p-5 rounded-2xl bg-dark-950/80 border border-white/10 backdrop-blur-md flex items-center justify-between group-hover:border-accent-cyan/30 transition-colors"
                           >
-                            <span className="text-sm font-medium text-slate-400">{m.label}</span>
-                            <span className="text-2xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-white">
+                            <span className="text-xs sm:text-sm font-medium text-slate-400">{m.label}</span>
+                            <span className="text-xl sm:text-2xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-white">
                               {m.value}
                             </span>
                           </div>
                         ))}
                       </div>
                     ) : chapter.codeSnippet ? (
-                      <div className="p-5 rounded-2xl bg-dark-950/90 border border-white/10 font-mono text-xs text-slate-300 overflow-x-auto shadow-2xl">
-                        <div className="flex items-center gap-1.5 pb-3 mb-3 border-b border-white/10 text-slate-500">
+                      <div className="p-4 sm:p-5 rounded-2xl bg-dark-950/90 border border-white/10 font-mono text-[11px] sm:text-xs text-slate-300 overflow-x-auto shadow-2xl">
+                        <div className="flex items-center gap-1.5 pb-2.5 mb-2.5 sm:pb-3 sm:mb-3 border-b border-white/10 text-slate-500">
                           <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
                           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
                           <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
                           <span className="ml-2 text-[10px] text-slate-400">TelemetryProcessor.java</span>
                         </div>
-                        <pre className="text-accent-cyan/90 leading-relaxed">
+                        <pre className="text-accent-cyan/90 leading-relaxed overflow-x-auto">
                           {chapter.codeSnippet}
                         </pre>
                       </div>
                     ) : (
-                      <div className="p-8 rounded-2xl bg-gradient-to-br from-accent-blue/10 via-accent-cyan/5 to-transparent border border-white/10 text-center space-y-4">
-                        <Zap className="w-12 h-12 text-accent-cyan mx-auto animate-bounce" />
-                        <h4 className="text-xl font-bold text-white">Built for High Concurrency</h4>
+                      <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-accent-blue/10 via-accent-cyan/5 to-transparent border border-white/10 text-center space-y-3 sm:space-y-4">
+                        <Zap className="w-10 h-10 sm:w-12 sm:h-12 text-accent-cyan mx-auto animate-bounce" />
+                        <h4 className="text-lg sm:text-xl font-bold text-white">Built for High Concurrency</h4>
                         <p className="text-xs text-slate-400 font-mono">
                           Zero bottlenecks. Distributed caching. Fault-tolerant failovers.
                         </p>

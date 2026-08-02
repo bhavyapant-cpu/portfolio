@@ -49,98 +49,98 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-xl bg-dark-900 border border-white/15 rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden z-10 my-auto"
+          className="relative w-full max-w-xl bg-dark-900 border border-white/15 rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 overflow-hidden z-10 my-auto"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-6 mb-6">
+          <div className="flex items-center justify-between border-b border-white/10 pb-4 sm:pb-6 mb-4 sm:mb-6">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-accent-cyan">
+              <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-mono text-accent-cyan">
                 <Sparkles className="w-3.5 h-3.5" /> GET IN TOUCH
               </div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 Let's Build Systems Together
               </h2>
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-colors"
+              className="p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white transition-colors shrink-0 ml-2"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
 
           {/* Quick Copy Email Box */}
-          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-accent-cyan/10 text-accent-cyan">
-                <Mail className="w-5 h-5" />
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 mb-4 sm:mb-6">
+            <div className="flex items-center gap-2.5 sm:gap-3 overflow-hidden min-w-0">
+              <div className="p-2 sm:p-2.5 rounded-xl bg-accent-cyan/10 text-accent-cyan shrink-0">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="text-[10px] font-mono text-slate-400">Direct Email</div>
-                <div className="text-sm font-mono font-medium text-white">{email}</div>
+                <div className="text-xs sm:text-sm font-mono font-medium text-white truncate break-all">{email}</div>
               </div>
             </div>
             <button
               onClick={copyEmail}
-              className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors"
+              className="px-3 py-2 sm:p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors shrink-0 self-end xs:self-auto"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied' : 'Copy'}</span>
             </button>
           </div>
 
           {/* Form */}
           {submitted ? (
-            <div className="py-12 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
-                <Check className="w-8 h-8" />
+            <div className="py-8 sm:py-12 text-center space-y-4">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
+                <Check className="w-6 h-6 sm:w-8 sm:h-8" />
               </div>
-              <h3 className="text-xl font-bold text-white">Message Transmitted</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-white">Message Transmitted</h3>
               <p className="text-xs font-mono text-slate-400">
                 Thank you for reaching out. Bhavya will respond shortly.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1.5">Your Name</label>
+                <label className="block text-[11px] sm:text-xs font-mono text-slate-400 mb-1">Your Name</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Alex Mercer"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors"
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1.5">Your Email</label>
+                <label className="block text-[11px] sm:text-xs font-mono text-slate-400 mb-1">Your Email</label>
                 <input
                   type="email"
                   required
                   placeholder="alex@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors"
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1.5">Message / Inquiry</label>
+                <label className="block text-[11px] sm:text-xs font-mono text-slate-400 mb-1">Message / Inquiry</label>
                 <textarea
-                  rows={4}
+                  rows={3}
                   required
                   placeholder="Describe your project, role, or technical requirements..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors resize-none"
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white focus:outline-none focus:border-accent-cyan transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-dark-950 font-bold text-sm font-mono flex items-center justify-center gap-2 hover:scale-[1.01] transition-transform shadow-lg shadow-accent-cyan/20"
+                className="w-full py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-indigo text-dark-950 font-bold text-xs sm:text-sm font-mono flex items-center justify-center gap-2 hover:scale-[1.01] transition-transform shadow-lg shadow-accent-cyan/20"
               >
                 <Send className="w-4 h-4" />
                 <span>Send Message</span>
@@ -149,7 +149,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           )}
 
           {/* Social Links Bar */}
-          <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex flex-col xs:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-400">
             <span>Connect on Socials:</span>
             <div className="flex items-center gap-3">
               <a

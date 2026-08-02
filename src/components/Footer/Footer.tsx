@@ -25,8 +25,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onDownloadResume 
   };
 
   return (
-    <footer className="py-16 px-6 sm:px-12 md:px-20 bg-dark-950 border-t border-white/10 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <footer className="py-12 sm:py-16 px-4 sm:px-8 md:px-12 lg:px-20 bg-dark-950 border-t border-white/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Brand Col */}
           <div className="md:col-span-6 space-y-4">
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onDownloadResume 
             <p className="text-slate-400 text-sm font-light leading-relaxed max-w-md">
               Senior Software Engineer building high-throughput Kafka pipelines, Java microservices, AI integrations, and cloud infrastructure.
             </p>
-            <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 text-xs font-mono text-slate-400">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10">
                 <MapPin className="w-3.5 h-3.5 text-accent-cyan" /> India
               </span>
@@ -99,7 +99,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onDownloadResume 
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500 text-center sm:text-left">
           <div>
             © {new Date().getFullYear()} Bhavya Pant. Designed & Engineered with precision.
           </div>

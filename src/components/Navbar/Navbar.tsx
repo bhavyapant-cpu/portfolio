@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onDownloadResume 
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-6 sm:px-12 py-5 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-12 py-3 sm:py-5 pointer-events-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Mark */}
         <motion.a
@@ -115,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onDownloadResume 
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden pointer-events-auto mt-4 p-6 rounded-3xl bg-dark-900/95 border border-white/15 backdrop-blur-2xl space-y-4"
+          className="md:hidden pointer-events-auto mt-3 p-4 sm:p-6 rounded-3xl bg-dark-900/95 border border-white/15 backdrop-blur-2xl space-y-4"
         >
           <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (

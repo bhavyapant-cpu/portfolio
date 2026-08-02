@@ -143,7 +143,7 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollProgress }) => {
       {/* Volumetric Specular Lighting & Parallax Layers */}
       {/* 1. Volumetric Blue Glow (Left / Center) */}
       <div 
-        className="absolute w-[900px] h-[500px] bg-accent-cyan/15 rounded-full blur-[150px] pointer-events-none transition-transform duration-500 ease-out"
+        className="absolute w-[300px] sm:w-[600px] lg:w-[900px] h-[200px] sm:h-[350px] lg:h-[500px] bg-accent-cyan/15 rounded-full blur-[100px] sm:blur-[150px] pointer-events-none transition-transform duration-500 ease-out"
         style={{
           top: `${20 + mousePos.y * 10}%`,
           left: `${15 + mousePos.x * 10}%`,
@@ -153,7 +153,7 @@ export const HeroCanvas: React.FC<HeroCanvasProps> = ({ scrollProgress }) => {
 
       {/* 2. Soft Orange Rim Light (Right / Top Edge) */}
       <div 
-        className="absolute w-[600px] h-[400px] bg-amber-500/15 rounded-full blur-[130px] pointer-events-none transition-transform duration-500 ease-out"
+        className="absolute w-[220px] sm:w-[400px] lg:w-[600px] h-[150px] sm:h-[280px] lg:h-[400px] bg-amber-500/15 rounded-full blur-[90px] sm:blur-[130px] pointer-events-none transition-transform duration-500 ease-out"
         style={{
           top: `${10 - mousePos.y * 5}%`,
           right: `${5 - mousePos.x * 5}%`,
