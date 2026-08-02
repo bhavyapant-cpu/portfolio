@@ -11,41 +11,57 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
   if (!isOpen) return null;
 
   const handleDownload = () => {
-    // Generate a downloadable text resume or PDF link
-    const resumeText = `
-BHAVYA PANT — Software Engineer
-Email: pantbhavya2001@gmail.com
-Specialization: Java, Spring Boot, Kafka, AI Integrations, AWS, Docker, Kubernetes
+    const resumeText = `BHAVYA PANT
+Java | Distributed Systems | Kafka | Kubernetes | Docker | Linux | AWS
+Phone: +91 6397793245 | Email: pantbhavya805@gmail.com
+LinkedIn: https://www.linkedin.com/in/bhavya-pant09 | GitHub: https://github.com/BhavyaPant-bly
 
 SUMMARY
-Senior Software Engineer building production backend systems, high-throughput Kafka telemetry pipelines, AI-powered products, and cloud infrastructure.
-
-CORE HIGHLIGHTS
-- Kafka Telemetry Pipeline serving 1,400+ connected IoT devices
-- 200,000+ API requests per day with 99.99% availability
-- WhatsApp Business API -> OpenAI GPT-4 Multi-Agent Integration
-- Spring Boot Microservices, Redis Caching, AWS EC2, Docker & Kubernetes
-
-EXPERIENCE
-1. Electrowaves Electronics — Software Developer (2023 — Present)
-   • Built Kafka telemetry pipeline for 1,400+ IoT hardware devices.
-   • Developed Spring Boot microservices on AWS EC2 & Docker.
-
-2. CodeInsight Technologies — Software Developer (2022 — 2023)
-   • Built Spring Boot APIs, Angular web interfaces, and Robot Framework automated tests.
+Software Engineer with 2+ years building backend systems for distributed IoT infrastructure. Built and maintained production microservices processing 200K+ API requests/day across 1400+ IoT devices (solar inverters and EV chargers), including telemetry ingestion pipelines and live-site issue resolution. Experienced with AWS cloud infrastructure (EC2, S3, Lambda) and containerized deployment (Docker, GitHub Actions CI/CD), with hands-on use of AI-assisted development tools (GitHub Copilot).
 
 TECHNICAL SKILLS
-- Backend: Java, Spring Boot, Python, Django, REST APIs, SQL
-- Messaging & Telemetry: Apache Kafka, Kafka Connect, Redis
-- AI: OpenAI API, WhatsApp Business API
-- Cloud & DevOps: AWS, Docker, Kubernetes, Linux, CI/CD
-    `;
+• Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, Linux, GitHub Actions, CI/CD, Nginx
+• AI-Assisted Engineering: GitHub Copilot for backend and API development
+• Languages: Java (8, 21), C++ (C++11), Python (3.9), JavaScript, SQL (MySQL 8)
+• Core CS: Data Structures & Algorithms, Operating Systems, Computer Networks, OOP, Multithreading, Distributed Systems, System Design
+• Backend: Spring Boot, Spring Security, Hibernate, JPA, REST APIs, Microservices, Maven
+• Database & Messaging: MySQL, MongoDB, Redis, Kafka
+• Testing: JUnit, Selenium, Robot Framework, Cucumber
+• Developer Tools: Git, GitHub, Swagger/OpenAPI, Postman
+• Frontend: React, Angular, TypeScript, HTML5/CSS3
+
+EXPERIENCE
+1. Electrowaves Electronics — Software Developer (Jan 2025 – Present | Panchkula, Haryana)
+   • Built production microservices using Java, Spring Boot, Hibernate, and MySQL, delivering secure REST APIs with Spring Security, JWT, and OAuth 2.0.
+   • Built telemetry ingestion pipelines using Kafka and Redis, streaming data from 1400+ IoT devices (900+ solar inverters, 500+ EV chargers) at 200K+ API requests/day with sub-second latency, optimizing storage and query performance for real-time analytics.
+   • Resolved production issues spanning API failures, telemetry sync, timezone inconsistencies, and JVM/GC tuning to improve platform uptime.
+   • Used GitHub Copilot to accelerate backend development, reducing implementation time on repetitive CRUD/API work by roughly 30%.
+   • Containerized services using Docker and Kubernetes, configured Nginx, and automated CI/CD via GitHub Actions on Linux.
+
+2. CodeInsight Technologies — Software Engineering Intern → Software Developer (Jan 2024 – Jan 2025 | Mohali, Punjab)
+   • Promoted from Software Engineering Intern to Software Developer within 6 months based on technical performance and delivery impact.
+   • Developed backend services using Java, Spring Boot, Hibernate, and SQL alongside responsive Angular applications, delivering 40+ production features while optimizing SQL queries and schemas.
+   • Built automated regression suites using Robot Framework, contributing to CI/CD and Agile workflows.
+
+PROJECTS
+• Pyramid Solar & EV Charge Platform | Java, Spring Boot, Kafka, Redis, MySQL, Docker, Kubernetes, AWS
+  – Built telemetry pipelines using Kafka and Redis for real-time processing across 1400+ IoT devices, deployed on AWS EC2.
+  – Improved fault tolerance and data consistency to meet IoT uptime requirements, resolving issues in production.
+• Railway Safety Navigation System (FOGPASS) | Java, Spring Boot, React Native, MySQL, AWS (S3)
+  – Built a cross-platform railway navigation system using graph algorithms and Hidden Markov Model (HMM) map matching for positioning accuracy under unreliable GPS.
+• Amcom | Java, Spring Boot, Kafka, Django, OpenAI API, AWS
+  – Built a WhatsApp Business message processing pipeline using Kafka for event streaming between a Java backend and a Django consumer service, with OpenAI's API handling intent classification and reply generation.
+
+EDUCATION
+Masters in Computer Application (CGPA - 8.0) | July 2021 - May 2024
+DCSA, Panjab University — Chandigarh, India
+`;
 
     const blob = new Blob([resumeText], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Bhavya_Pant_Software_Engineer_Resume.txt';
+    link.download = 'Bhavya_Pant_Resume.txt';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

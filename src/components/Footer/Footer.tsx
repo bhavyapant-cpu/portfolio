@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUp, Github, Linkedin, Mail, Clock, MapPin, Terminal, Heart } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Clock, MapPin, Terminal, Phone } from 'lucide-react';
 
 interface FooterProps {
   onOpenContact: () => void;
@@ -63,28 +63,38 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact, onDownloadResume 
           {/* Socials & Resume */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">Connect</h4>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 sm:gap-3">
               <a
-                href="https://github.com/pantbhavya"
+                href="https://github.com/BhavyaPant-bly"
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+                title="GitHub Profile"
+                className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href="https://linkedin.com/in/bhavyapant"
+                href="https://www.linkedin.com/in/bhavya-pant09"
                 target="_blank"
                 rel="noreferrer"
-                className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+                title="LinkedIn Profile"
+                className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              <a
+                href="tel:+916397793245"
+                title="Call Bhavya Pant (+91 6397793245)"
+                className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-emerald-400 hover:text-emerald-300 transition-colors"
+              >
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <button
                 onClick={onOpenContact}
-                className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+                title="Send Message"
+                className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
             <div className="pt-2">

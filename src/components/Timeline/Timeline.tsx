@@ -17,31 +17,31 @@ const experiences: ExperienceItem[] = [
   {
     company: 'Electrowaves Electronics',
     role: 'Software Developer',
-    period: '2023 — Present',
-    location: 'India',
+    period: 'Jan 2025 — Present',
+    location: 'Panchkula, Haryana',
     type: 'Full-Time',
     metricsBadge: '1,400+ IoT Devices Telemetry Pipeline',
     highlights: [
-      'Architected end-to-end Kafka telemetry streaming pipeline for 1,400+ connected IoT hardware devices processing 200K+ API requests/day.',
-      'Developed modular Spring Boot microservices for real-time sensor data ingest, state synchronization, and anomaly detection.',
-      'Containerized all backend workloads using Docker and orchestrated zero-downtime deployments via Kubernetes.',
-      'Managed cloud infrastructure on AWS EC2, ensuring high availability, sub-50ms data ingestion, and 99.99% operational uptime.'
+      'Built production microservices using Java, Spring Boot, Hibernate, and MySQL, delivering secure REST APIs with Spring Security, JWT, and OAuth 2.0.',
+      'Built telemetry ingestion pipelines using Kafka and Redis, streaming data from 1,400+ IoT devices (900+ solar inverters, 500+ EV chargers) at 200K+ API requests/day.',
+      'Resolved production issues spanning API failures, telemetry sync, timezone inconsistencies, and JVM/GC tuning to improve platform uptime.',
+      'Containerized services using Docker and Kubernetes, configured Nginx, and automated CI/CD via GitHub Actions on Linux.'
     ],
-    techStack: ['Kafka', 'Spring Boot', 'Docker', 'Kubernetes', 'AWS', 'Java', 'Redis'],
+    techStack: ['Java', 'Spring Boot', 'Kafka', 'Redis', 'Docker', 'Kubernetes', 'AWS', 'MySQL', 'Nginx'],
   },
   {
     company: 'CodeInsight Technologies',
-    role: 'Software Developer',
-    period: '2022 — 2023',
-    location: 'India',
+    role: 'Software Engineering Intern → Software Developer',
+    period: 'Jan 2024 — Jan 2025',
+    location: 'Mohali, Punjab',
     type: 'Full-Time',
     highlights: [
-      'Engineered RESTful web services in Spring Boot powering core business domain workflows and enterprise data stores.',
-      'Designed responsive UI web interfaces using Angular integrated with secure backend APIs.',
-      'Optimized SQL database schemas, index strategies, and complex relational queries for fast retrieval.',
-      'Implemented automated end-to-end regression test suites utilizing Robot Framework to guarantee production build quality.'
+      'Promoted from Software Engineering Intern to Software Developer within 6 months based on technical performance and delivery impact.',
+      'Developed backend services using Java, Spring Boot, Hibernate, and SQL alongside responsive Angular applications, delivering 40+ production features.',
+      'Optimized SQL database queries and schemas for high-speed data retrieval across core business workflows.',
+      'Built automated regression test suites using Robot Framework, contributing to CI/CD and Agile workflows.'
     ],
-    techStack: ['Spring Boot', 'Angular', 'SQL', 'Robot Framework', 'Java', 'REST APIs'],
+    techStack: ['Java', 'Spring Boot', 'Angular', 'SQL', 'Hibernate', 'Robot Framework', 'REST APIs'],
   },
 ];
 
