@@ -67,25 +67,27 @@ export default async function handler(
 
   // 1. Guaranteed Google Sheet Logging (Runs independently first)
   let sheetSuccess = false;
-  try {
-    const sheetResponse = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, message }),
-      redirect: 'follow',
-    });
-    sheetSuccess = sheetResponse.ok;
-  } catch (sheetErr) {
-    console.error('[GoogleSheetLogger] Failed to log inquiry to sheet:', sheetErr);
+  if (GOOGLE_SHEET_WEBHOOK_URL) {
+    try {
+      const sheetResponse = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+        redirect: 'follow',
+      });
+      sheetSuccess = sheetResponse.ok;
+    } catch (sheetErr) {
+      console.error('[GoogleSheetLogger] Failed to log inquiry to sheet:', sheetErr);
+    }
   }
 
-  // 2. Gmail SMTP Dispatch (Runs independently second)
+  // 2. Gmail SMTP Dispatch to Bhavya Pant
   let emailSuccess = false;
   let emailErrorMsg = '';
 
-  const passkey = process.env.EMAIL_TOKEN || 'YOUR_GMAIL_APP_PASSKEY';
+  const passkey = process.env.EMAIL_ACCESS_TOKEN || process.env.EMAIL_TOKEN || 'YOUR_GMAIL_APP_PASSKEY';
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -118,14 +120,38 @@ export default async function handler(
     emailErrorMsg = err.message || 'SMTP dispatch error';
   }
 
-  // 3. Return success if either Google Sheet logging OR email succeeded!
+  // 3. Automated Auto-Reply Email sent to the user
+  try {
+    await transporter.sendMail({
+      from: `"Bhavya Pant" <pantbhavya805@gmail.com>`,
+      to: email,
+      subject: `Thank you for contacting Bhavya Pant`,
+      text: `Dear ${name},\n\nThank you for contacting Bhavya Pant. I have received your message and will review it and reply to you shortly.\n\nRegards,\nBhavya Pant`,
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 24px; color: #1e293b; max-width: 600px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff;">
+          <h2 style="color: #0284c7; margin-top: 0; font-size: 20px;">Thank You for Reaching Out!</h2>
+          <p style="font-size: 15px; line-height: 1.6;">Dear <strong>${name}</strong>,</p>
+          <p style="font-size: 15px; line-height: 1.6;">
+            Thank you for contacting Bhavya Pant. I have received your message and will review it and reply to you shortly.
+          </p>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+          <p style="font-size: 14px; color: #64748b; margin-bottom: 4px;">Regards,</p>
+          <p style="font-size: 15px; font-weight: bold; color: #0f172a; margin-top: 0;">Bhavya Pant</p>
+        </div>
+      `,
+    });
+  } catch (autoReplyErr) {
+    console.error('[AutoReply] Failed to send auto-reply email:', autoReplyErr);
+  }
+
+  // 4. Return success if either Google Sheet logging OR email succeeded
   if (sheetSuccess || emailSuccess) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end(
       JSON.stringify({
         success: true,
-        message: 'Inquiry processed successfully',
+        message: 'Inquiry processed and auto-reply sent',
         sheetLogged: sheetSuccess,
         emailSent: emailSuccess,
       })
