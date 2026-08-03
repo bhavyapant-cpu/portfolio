@@ -9,7 +9,7 @@ interface ContactRequestBody {
 
 const GOOGLE_SHEET_WEBHOOK_URL =
   process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
-  'https://script.google.com/macros/s/AKfycbxsX-E2un4U3EXtRu6jOACJpJ57pAtj4kypCgqYDzZa4ImFEshPbkmNhD7QnWOaR45W/exec';
+  '';
 
 export default async function handler(
   req: IncomingMessage & { body?: ContactRequestBody; method?: string },
@@ -85,7 +85,7 @@ export default async function handler(
   let emailSuccess = false;
   let emailErrorMsg = '';
 
-  const passkey = process.env.VITE_EMAIL_TOKEN || process.env.GMAIL_PASSKEY || process.env.EMAIL_TOKEN || 'YOUR_GMAIL_APP_PASSKEY';
+  const passkey = process.env.EMAIL_TOKEN || 'YOUR_GMAIL_APP_PASSKEY';
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
