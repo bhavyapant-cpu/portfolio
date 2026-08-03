@@ -29,14 +29,9 @@ portfolio/
 │   │   ├── Projects/              # Interactive case study grid & modal details
 │   │   │   ├── Diagrams/          # SVG architecture flow diagrams (Amcom, Solar)
 │   │   │   └── CaseStudyModal.tsx # Full case study modal with architecture/highlights/tech tabs
-│   │   ├── ScrollStory/           # Scrollytelling narrative cards & code snippets
-│   │   ├── Skills/                # Filterable tech stack visualization grid
-│   │   └── Timeline/              # Professional work experience timeline
 │   ├── hooks/                     # Custom React hooks
 │   │   ├── useFrameSequence.ts    # Preloads canvas animation image frames
 │   │   └── useScrollProgress.ts   # Scroll progress scrub calculator (0.0 to 1.0)
-│   ├── services/
-│   │   └── emailService.ts        # Async email dispatch service for contact form inquiries
 │   ├── styles/
 │   │   └── globals.css            # Base Tailwind imports, custom scrollbar & glass styles
 │   ├── App.tsx                    # Root application component orchestrating sections & modals

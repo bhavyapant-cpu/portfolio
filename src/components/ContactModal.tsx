@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Mail, Phone, Github, Linkedin, Send, Copy, Check, Sparkles, Loader2 } from 'lucide-react';
-import { sendContactEmail, DUMMY_EMAIL_TOKEN } from '../services/emailService';
+import { X, Mail, Phone, Github, Linkedin, Send, Copy, Check, Sparkles, Loader2, AlertCircle } from 'lucide-react';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -13,6 +12,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   const [phoneCopied, setPhoneCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const email = 'pantbhavya805@gmail.com';
@@ -33,16 +33,51 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
-    await sendContactEmail(formData);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-      onClose();
-    }, 2500);
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const result = await response.json();
+        if (response.ok && result.success !== false) {
+          setSubmitted(true);
+          setTimeout(() => {
+            setSubmitted(false);
+            setFormData({ name: '', email: '', message: '' });
+            onClose();
+          }, 2500);
+        } else {
+          setErrorMessage(result.error || result.message || 'Failed to transmit message. Please try again.');
+        }
+      } else {
+        if (response.ok) {
+          setSubmitted(true);
+          setTimeout(() => {
+            setSubmitted(false);
+            setFormData({ name: '', email: '', message: '' });
+            onClose();
+          }, 2500);
+        } else {
+          setErrorMessage('Failed to send message. Please verify configuration.');
+        }
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Network error occurred while sending message.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -99,6 +134,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 </div>
               </div>
               <button
+                type="button"
                 onClick={copyEmail}
                 className="w-full py-1.5 px-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-mono flex items-center justify-center gap-1.5 transition-colors"
               >
@@ -127,6 +163,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   <span>Call</span>
                 </a>
                 <button
+                  type="button"
                   onClick={copyPhone}
                   className="py-1.5 px-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-mono flex items-center justify-center gap-1 transition-colors"
                 >
@@ -149,6 +186,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
+              {errorMessage && (
+                <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2 font-mono">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               <div>
                 <label className="block text-[11px] sm:text-xs font-mono text-slate-400 mb-1">Your Name</label>
                 <input
@@ -205,17 +249,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             </form>
           )}
 
-          {/* Social & Contact Bar */}
+          {/* Social Links Bar */}
           <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/10 flex flex-col xs:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-400">
-            <span>Connect on Socials & Call:</span>
+            <span>Connect on Socials:</span>
             <div className="flex items-center gap-2.5">
-              <a
-                href={`tel:${phone}`}
-                title={`Call ${phone}`}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-              </a>
               <a
                 href="https://github.com/BhavyaPant-bly"
                 target="_blank"
