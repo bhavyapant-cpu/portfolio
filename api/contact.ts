@@ -7,6 +7,10 @@ interface ContactRequestBody {
   message?: string;
 }
 
+const GOOGLE_SHEET_WEBHOOK_URL =
+  process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
+  'https://script.google.com/macros/s/AKfycbxsX-E2un4U3EXtRu6jOACJpJ57pAtj4kypCgqYDzZa4ImFEshPbkmNhD7QnWOaR45W/exec';
+
 export default async function handler(
   req: IncomingMessage & { body?: ContactRequestBody; method?: string },
   res: ServerResponse & { statusCode: number; setHeader: (name: string, value: string) => void; end: (chunk?: any) => void }
@@ -61,7 +65,26 @@ export default async function handler(
     return;
   }
 
-  // Gmail App Passkey from environment variable or fallback
+  // 1. Guaranteed Google Sheet Logging (Runs independently first)
+  let sheetSuccess = false;
+  try {
+    const sheetResponse = await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, message }),
+      redirect: 'follow',
+    });
+    sheetSuccess = sheetResponse.ok;
+  } catch (sheetErr) {
+    console.error('[GoogleSheetLogger] Failed to log inquiry to sheet:', sheetErr);
+  }
+
+  // 2. Gmail SMTP Dispatch (Runs independently second)
+  let emailSuccess = false;
+  let emailErrorMsg = '';
+
   const passkey = process.env.VITE_EMAIL_TOKEN || process.env.GMAIL_PASSKEY || process.env.EMAIL_TOKEN || 'YOUR_GMAIL_APP_PASSKEY';
 
   const transporter = nodemailer.createTransport({
@@ -89,13 +112,32 @@ export default async function handler(
         </div>
       `,
     });
+    emailSuccess = true;
+  } catch (err: any) {
+    console.error('[GmailSMTP] Failed to send email via SMTP:', err);
+    emailErrorMsg = err.message || 'SMTP dispatch error';
+  }
 
+  // 3. Return success if either Google Sheet logging OR email succeeded!
+  if (sheetSuccess || emailSuccess) {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ success: true, message: 'Email sent successfully via Gmail SMTP' }));
-  } catch (error: any) {
+    res.end(
+      JSON.stringify({
+        success: true,
+        message: 'Inquiry processed successfully',
+        sheetLogged: sheetSuccess,
+        emailSent: emailSuccess,
+      })
+    );
+  } else {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ success: false, error: error.message || 'Failed to send email via Gmail SMTP' }));
+    res.end(
+      JSON.stringify({
+        success: false,
+        error: emailErrorMsg || 'Failed to process inquiry',
+      })
+    );
   }
 }
